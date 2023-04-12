@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+//URI / URL을 생성하는데 도움을 주는 클래스
+final uri = Uri.parse('https://blog.codefactory.ai');
+
 class HomeScreen extends StatelessWidget {
-  WebViewController? controller;
+  WebViewController controller = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..loadRequest(uri);
 
   HomeScreen({super.key});
 
@@ -16,9 +21,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              if (controller != null) {
-                controller!.loadUrl('https://blog.codefactory.ai');
-              }
+              controller.loadRequest(uri);
             },
             icon: const Icon(
               Icons.home,
@@ -26,12 +29,13 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: WebView(
-        onWebViewCreated: (WebViewController controller) {
-          this.controller = controller;
-        },
-        initialUrl: 'https://blog.codefactory.ai',
-        javascriptMode: JavascriptMode.unrestricted,
+      body: WebViewWidget(
+        controller: controller,
+        // onWebViewCreated: (WebViewController controller) {
+        //   this.controller = controller;
+        // },
+        // initialUrl: 'https://blog.codefactory.ai',
+        // javascriptMode: JavascriptMode.unrestricted,
       ),
     );
   }
