@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 //URI / URL을 생성하는데 도움을 주는 클래스
-final uri = Uri.parse('https://blog.codefactory.ai');
+final uri = Uri.parse('https://m.shop.ivenet.co.kr');
 
 class HomeScreen extends StatelessWidget {
   WebViewController controller = WebViewController()
